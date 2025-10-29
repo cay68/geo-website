@@ -13,7 +13,7 @@
   width: 570px;
   min-height: 484px;
   height: auto;
-  margin: 95px auto 0 0;
+  margin: 95px 600px 0 0;
 }
 
 .u-section-1 .u-container-layout-1 {
@@ -67,6 +67,7 @@
   .u-section-1 .u-group-1 {
     width: 522px;
     height: auto;
+    margin-right: 580px;
   }
 
   .u-section-1 .u-text-2 {
