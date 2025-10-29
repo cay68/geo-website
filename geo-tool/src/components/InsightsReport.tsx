@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BarChart3, TrendingUp, TrendingDown, Download, RefreshCw, ArrowUp, ArrowDown, ThumbsUp, ThumbsDown, Plus, X } from 'lucide-react'
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, AreaChart, Line, LineChart } from 'recharts'
 
@@ -26,6 +27,7 @@ interface PromptAnalysis {
 }
 
 const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledContent, prefilledPrompts, onClearData }: InsightsReportProps) => {
+  const navigate = useNavigate()
   const [industry, setIndustry] = useState('')
   const [prompts, setPrompts] = useState<string[]>((prefilledPrompts && prefilledPrompts.length > 0) ? prefilledPrompts : [''])
   const [content, setContent] = useState(prefilledContent || '')
@@ -34,6 +36,16 @@ const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledCo
   const [dashboardData, setDashboardData] = useState<any>(null)
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (industry && dashboardData) {
+      navigate('/tool?tool=insights-report&state=output', { replace: true })
+    } else if (industry) {
+      navigate('/tool?tool=insights-report&state=input', { replace: true })
+    } else {
+      navigate('/tool?tool=insights-report', { replace: true })
+    }
+  }, [industry, dashboardData, navigate])
 
   const industries = [
     'Technology',

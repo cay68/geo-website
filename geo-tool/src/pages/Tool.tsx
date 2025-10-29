@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Lightbulb, Edit3, BarChart3, User, Clock, Trash2, ChevronLeft, ChevronRight } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import AIPromptRecommendations from '../components/AIPromptRecommendations'
@@ -20,6 +20,7 @@ interface HistoryItem {
 
 function Tool() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [activeTool, setActiveTool] = useState<ActiveTool>('ai-prompts')
   const [isLoading, setIsLoading] = useState(false)
   const [loadingMessage, setLoadingMessage] = useState('')
@@ -51,6 +52,19 @@ function Tool() {
     }
   ])
   const [currentDescription, setCurrentDescription] = useState('')
+
+  // Sync URL with active tool
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const toolParam = params.get('tool')
+    if (toolParam && ['ai-prompts', 'content-rewriter', 'insights-report'].includes(toolParam)) {
+      setActiveTool(toolParam as ActiveTool)
+    }
+  }, [location.search])
+
+  const updateURL = (tool: ActiveTool) => {
+    navigate(`/tool?tool=${tool}`, { replace: true })
+  }
 
   const tools = [
     {
@@ -86,6 +100,7 @@ function Tool() {
   const handleUsePromptsInRewriter = (prompts: string[]) => {
     setGeneratedPrompts(prompts)
     setActiveTool('content-rewriter')
+    updateURL('content-rewriter')
   }
 
   const addToHistory = (tool: ActiveTool, description: string) => {
@@ -108,6 +123,7 @@ function Tool() {
 
   const loadHistoryItem = (item: HistoryItem) => {
     setActiveTool(item.tool)
+    updateURL(item.tool)
   }
 
   const deleteHistoryItem = (e: React.MouseEvent, itemId: string) => {
@@ -144,6 +160,7 @@ function Tool() {
               setRewrittenContent(content)
               setContentPrompts(prompts)
               setActiveTool('insights-report')
+              updateURL('insights-report')
             }}
           />
         )
@@ -216,6 +233,7 @@ function Tool() {
                     onClick={() => {
                       setActiveTool(tool.id)
                       setGeneratedPrompts([]) // Clear prompts when switching tools
+                      updateURL(tool.id)
                     }}
                   >
                     <div className="tool-item-icon">

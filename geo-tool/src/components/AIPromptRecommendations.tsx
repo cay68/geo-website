@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Lightbulb, Sparkles, RefreshCw, ArrowRight, Zap, Upload, X, Pencil, RotateCw, HelpCircle, ThumbsUp, ThumbsDown } from 'lucide-react'
 
 interface AIPromptRecommendationsProps {
@@ -9,6 +10,7 @@ interface AIPromptRecommendationsProps {
 }
 
 const AIPromptRecommendations = ({ startLoading, stopLoading, onUseInRewriter, onAddToHistory }: AIPromptRecommendationsProps) => {
+  const navigate = useNavigate()
   const [businessDescription, setBusinessDescription] = useState('')
   const [websiteLink, setWebsiteLink] = useState('')
   const [websiteImage, setWebsiteImage] = useState<File | null>(null)
@@ -19,6 +21,16 @@ const AIPromptRecommendations = ({ startLoading, stopLoading, onUseInRewriter, o
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (businessDescription && recommendations.length > 0) {
+      navigate('/tool?tool=ai-prompts&state=output', { replace: true })
+    } else if (businessDescription) {
+      navigate('/tool?tool=ai-prompts&state=input', { replace: true })
+    } else {
+      navigate('/tool?tool=ai-prompts', { replace: true })
+    }
+  }, [businessDescription, recommendations, navigate])
 
   const scrollToResults = () => {
     if (resultsRef.current) {

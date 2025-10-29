@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Edit3, Plus, X, Wand2, AlertCircle, Copy, RefreshCw, Check, Goal, Minimize2, Maximize2, Highlighter, ThumbsUp, ThumbsDown, Target, Zap, ArrowRight } from 'lucide-react'
 
 interface SmartContentRewriterProps {
@@ -22,6 +23,7 @@ const AI_PLATFORMS = [
 ]
 
 const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onClearPrompts, onAddToHistory, onSwitchToInsights }: SmartContentRewriterProps) => {
+  const navigate = useNavigate()
   const [content, setContent] = useState('')
   const [prompts, setPrompts] = useState([''])
   const [rewrittenContent, setRewrittenContent] = useState('')
@@ -38,6 +40,16 @@ const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onC
 
   const tones = ['Casual', 'Formal', 'Persuasive', 'Humorous', 'Inspirational']
   const audiences = ['Novice', 'Intermediate', 'Expert']
+
+  useEffect(() => {
+    if (content && rewrittenContent) {
+      navigate('/tool?tool=content-rewriter&state=output', { replace: true })
+    } else if (content) {
+      navigate('/tool?tool=content-rewriter&state=input', { replace: true })
+    } else {
+      navigate('/tool?tool=content-rewriter', { replace: true })
+    }
+  }, [content, rewrittenContent, navigate])
 
   const handlePlatformToggle = (platform: string) => {
     setTargetPlatforms(prev =>
