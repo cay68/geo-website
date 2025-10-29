@@ -123,15 +123,15 @@ const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledCo
 
         // Overview insights
         overviewInsights: [
-          `${extractedBusinessName} ranks #${userRank} in the ${industry} industry for AI visibility`,
+          `${extractedBusinessName} ranks #${userRank} in the Home & Living Appliances industry for AI visibility`,
           `Your brand appears in ${Math.floor(Math.random() * 30) + 60}% of relevant AI search results`,
-          `Primary competitors: CompetitorA (${competitorScores[0]}%), CompetitorB (${competitorScores[1]}%)`,
-          `Strongest presence on ChatGPT and Claude platforms`
+          `Primary competitors: Courts (${competitorScores[0]}%), Gain City (${competitorScores[1]}%)`,
+          `Strongest presence on ChatGPT and Perplexity platforms`
         ],
 
         // Closest competitor
         closestCompetitor: {
-          name: 'CompetitorA',
+          name: 'Courts',
           score: competitorScores[0],
           difference: Math.abs(competitorScores[0] - userScore),
           icon: '🏆'
@@ -139,11 +139,11 @@ const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledCo
 
         // Brand industry rankings
         brandRankings: [
-          { rank: 1, name: 'CompetitorA', score: competitorScores[0], totalMentions: Math.floor(Math.random() * 300) + 400, change: 2, icon: '🏆' },
-          { rank: 2, name: userRank === 2 ? extractedBusinessName : 'CompetitorB', score: userRank === 2 ? userScore : competitorScores[1], totalMentions: Math.floor(Math.random() * 300) + 350, change: userRank === 2 ? (Math.random() > 0.5 ? 1 : -1) : -1, icon: userRank === 2 ? '💼' : '🏢' },
-          { rank: 3, name: userRank === 3 ? extractedBusinessName : 'CompetitorC', score: userRank === 3 ? userScore : competitorScores[2], totalMentions: Math.floor(Math.random() * 300) + 300, change: userRank === 3 ? (Math.random() > 0.5 ? 1 : -1) : 3, icon: userRank === 3 ? '💼' : '🚀' },
-          { rank: 4, name: userRank === 4 ? extractedBusinessName : 'CompetitorD', score: userRank === 4 ? userScore : competitorScores[3], totalMentions: Math.floor(Math.random() * 300) + 250, change: userRank === 4 ? (Math.random() > 0.5 ? 1 : -1) : -2, icon: userRank === 4 ? '💼' : '📊' },
-          { rank: 5, name: userRank === 5 ? extractedBusinessName : 'CompetitorE', score: userRank === 5 ? userScore : competitorScores[4], totalMentions: Math.floor(Math.random() * 300) + 200, change: userRank === 5 ? (Math.random() > 0.5 ? 1 : -1) : 1, icon: userRank === 5 ? '💼' : '🎯' }
+          { rank: 1, name: 'Courts', score: competitorScores[0], totalMentions: Math.floor(Math.random() * 300) + 400, change: 2, icon: '🏆' },
+          { rank: 2, name: userRank === 2 ? extractedBusinessName : 'Gain City', score: userRank === 2 ? userScore : competitorScores[1], totalMentions: Math.floor(Math.random() * 300) + 350, change: userRank === 2 ? (Math.random() > 0.5 ? 1 : -1) : -1, icon: userRank === 2 ? '💼' : '🏢' },
+          { rank: 3, name: userRank === 3 ? extractedBusinessName : 'Best Denki', score: userRank === 3 ? userScore : competitorScores[2], totalMentions: Math.floor(Math.random() * 300) + 300, change: userRank === 3 ? (Math.random() > 0.5 ? 1 : -1) : 3, icon: userRank === 3 ? '💼' : '🚀' },
+          { rank: 4, name: userRank === 4 ? extractedBusinessName : 'Harvey Norman', score: userRank === 4 ? userScore : competitorScores[3], totalMentions: Math.floor(Math.random() * 300) + 250, change: userRank === 4 ? (Math.random() > 0.5 ? 1 : -1) : -2, icon: userRank === 4 ? '💼' : '📊' },
+          { rank: 5, name: userRank === 5 ? extractedBusinessName : 'Audio House', score: userRank === 5 ? userScore : competitorScores[4], totalMentions: Math.floor(Math.random() * 300) + 200, change: userRank === 5 ? (Math.random() > 0.5 ? 1 : -1) : 1, icon: userRank === 5 ? '💼' : '🎯' }
         ],
 
         // Platform breakdown
@@ -157,11 +157,11 @@ const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledCo
 
         // Prompts analysis data for bar chart
         promptsAnalysis: [
-          { prompt: 'Best AI tools for business automation', appearances: Math.floor(Math.random() * 100) + 350 },
-          { prompt: 'How to implement AI in my company', appearances: Math.floor(Math.random() * 100) + 280 },
-          { prompt: 'AI software for small businesses', appearances: Math.floor(Math.random() * 100) + 220 },
-          { prompt: 'Compare AI platforms for enterprises', appearances: Math.floor(Math.random() * 100) + 180 },
-          { prompt: 'AI automation solutions pricing', appearances: Math.floor(Math.random() * 100) + 150 }
+          { prompt: 'Best online store for home appliances in Singapore', appearances: Math.floor(Math.random() * 100) + 350 },
+          { prompt: 'Smart home gadgets for HDB flats', appearances: Math.floor(Math.random() * 100) + 280 },
+          { prompt: 'Where to buy quality kitchen appliances Singapore', appearances: Math.floor(Math.random() * 100) + 220 },
+          { prompt: 'Festive deals on cooking appliances', appearances: Math.floor(Math.random() * 100) + 180 },
+          { prompt: 'Energy-efficient home appliances with warranty', appearances: Math.floor(Math.random() * 100) + 150 }
         ],
 
         // Visibility trend data - expanded to 12 months

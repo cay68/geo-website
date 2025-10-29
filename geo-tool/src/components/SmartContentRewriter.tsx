@@ -114,15 +114,24 @@ const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onC
     
     // Simulate API call with mock rewritten content
     setTimeout(() => {
-      const mockRewrittenContent = `Transform Your Business with Cutting-Edge AI Solutions
+      const mockRewrittenContent = `**AI-Optimized Content:**
 
-In today's rapidly evolving digital landscape, businesses need intelligent solutions that adapt and grow with their needs. Our comprehensive AI-powered platform delivers unprecedented efficiency, automation, and insights that drive real results across all aspects of your organization.
+Discover Singapore's Premier Destination for Smart Home & Kitchen Appliances
 
-Our intelligent automation streamlines complex workflows with AI that continuously learns and improves over time. Transform raw data into actionable business intelligence with our advanced analytics and reporting capabilities. Our scalable technology grows with your business, from startup to enterprise, supported by a dedicated team of AI specialists.
+Looking for the perfect blend of style, functionality, and value in home appliances? Our curated Shopify store brings you the latest in smart home technology and premium kitchen essentials, specifically tailored for modern Singaporean living.
 
-Key benefits include reducing operational costs by up to 40%, increasing productivity through smart automation, and making faster, more informed decisions with real-time AI insights. Stay ahead of the competition with cutting-edge technology and continuous innovation.
+From energy-efficient air fryers and multi-cookers that make weeknight dinners a breeze, to sleek smart home devices that seamlessly integrate with your HDB flat's setup—we've got everything to elevate your daily routine. Each product is hand-selected for quality, backed by comprehensive warranties, and delivered right to your doorstep with Singapore's fastest fulfillment.
 
-Join thousands of businesses already leveraging AI for competitive advantage. Our experts are ready to customize a solution that fits your unique needs and goals.`
+**Why Choose Us:**
+✓ **Curated for Singapore**: Products designed for local climate, space, and lifestyle needs
+✓ **Smart Home Ready**: Compatible with popular voice assistants and automation systems
+✓ **Seasonal Deals**: Regular festive promotions on trending cooking appliances and gadgets
+✓ **Trusted Quality**: Only reliable brands with excellent customer reviews and support
+✓ **Fast Delivery**: Most items ship within 24-48 hours across Singapore
+
+Whether you're upgrading your kitchen for CNY feasts, optimizing your home office setup, or exploring the latest smart home trends—our store makes it simple to find exactly what you need. Browse our collection of stylish, practical appliances that combine modern design with everyday functionality.
+
+**Shop with confidence**: Free returns, secure payment, and dedicated customer support for all your home improvement needs.`
 
       setRewrittenContent(mockRewrittenContent)
       stopLoading()
@@ -142,29 +151,17 @@ Join thousands of businesses already leveraging AI for competitive advantage. Ou
     startLoading('Regenerating AI-Optimized Content')
     
     setTimeout(() => {
-      const alternativeContent = `**Enhanced AI-Optimized Content:**
+      const alternativeContent = `**Original Content (Before Optimization):**
 
-Revolutionize Your Business Operations with Advanced AI Technology
+Welcome to Our Home Appliances Store
 
-The digital transformation era demands intelligent solutions that evolve with your organization. Our cutting-edge AI platform provides unmatched automation, insights, and operational excellence that delivers measurable business impact.
+We sell various home and kitchen appliances online. Our store has many products including fans, kettles, air fryers, and other items for your home. We have been in business for some time and offer good prices.
 
-**Our AI Advantage:**
+You can buy products from our website. We ship to Singapore addresses. Our appliances are from different brands and we try to keep good quality items in stock.
 
-✓ **Smart Automation**: Deploy AI that continuously learns and optimizes your workflows
-✓ **Predictive Analytics**: Convert complex data into strategic business decisions
-✓ **Enterprise Scalability**: Future-proof solutions that expand with your growth
-✓ **24/7 AI Support**: Round-the-clock intelligent assistance for your team
+If you need appliances for your kitchen or home, you can check our catalog. We have seasonal sales sometimes. Products come with standard warranty as provided by manufacturers.
 
-**Business Impact:**
-- Cut operational expenses by up to 45%
-- Boost team productivity with intelligent automation
-- Accelerate decision-making with real-time AI insights
-- Maintain competitive advantage through innovation
-
-**Start Your AI Journey:**
-Connect with our AI specialists to design a customized solution that transforms your business operations and drives sustainable growth.
-
-*Optimized for leading AI platforms: ChatGPT, Claude AI, Perplexity, and Google AI Overview.*`
+Browse our store to see what we have available. We accept various payment methods. Contact us if you have questions about products or delivery.`
 
       setRewrittenContent(alternativeContent)
       stopLoading()

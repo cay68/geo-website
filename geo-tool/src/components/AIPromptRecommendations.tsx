@@ -68,24 +68,24 @@ const AIPromptRecommendations = ({ startLoading, stopLoading, onUseInRewriter, o
     setTimeout(() => {
       const mockRecommendations = [
         {
-          prompt: "Best AI-powered software solutions for small businesses",
-          reason: "Targets business owners looking for AI solutions, high commercial intent"
+          prompt: "Where can I find the best online store in Singapore for home and kitchen appliances?",
+          reason: "Mirrors how users naturally ask AI for recommendations; strong buying intent from local shoppers."
         },
         {
-          prompt: "How to optimize content for AI search engines",
-          reason: "Addresses your core service offering and demonstrates expertise"
+          prompt: "What smart home gadgets are trending right now for Singaporean flats?",
+          reason: "Conversational tone captures tech-savvy audiences searching for modern home automation ideas."
         },
         {
-          prompt: "Top AI tools for business automation and efficiency",
-          reason: "Captures productivity-focused audience with specific pain points"
+          prompt: "Which Singapore e-commerce stores sell good-quality kitchen essentials for everyday use?",
+          reason: "Matches practical, solution-driven queries from busy homeowners looking for reliability."
         },
         {
-          prompt: "AI content optimization strategies for 2024",
-          reason: "Current year relevance increases search visibility and credibility"
+          prompt: "Are there any festive deals on cooking appliances in Singapore this season?",
+          reason: "Seasonal phrasing hooks users browsing for holiday or sale-related promotions."
         },
         {
-          prompt: "Smart AI solutions for digital marketing",
-          reason: "Broad appeal for marketing professionals seeking AI integration"
+          prompt: "What are the top-rated online shops in Singapore for stylish home upgrades?",
+          reason: "Appeals to aspirational buyers who value design, quality, and trusted local stores."
         }
       ]
       setRecommendations(mockRecommendations)
@@ -105,24 +105,24 @@ const AIPromptRecommendations = ({ startLoading, stopLoading, onUseInRewriter, o
     setTimeout(() => {
       const alternativeRecommendations = [
         {
-          prompt: "AI automation tools for modern businesses",
-          reason: "Emphasizes modernity and automation for tech-forward companies"
+          prompt: "Best Singapore online stores for affordable home appliances with fast delivery",
+          reason: "Combines value proposition with convenience factor that matters to busy shoppers."
         },
         {
-          prompt: "How to rank higher in AI search results",
-          reason: "Direct appeal to SEO professionals and content creators"
+          prompt: "What kitchen gadgets do Singaporean chefs recommend for home cooking?",
+          reason: "Leverages authority and local expertise to build trust with cooking enthusiasts."
         },
         {
-          prompt: "Best AI platforms for content creation",
-          reason: "Targets content creators and marketing teams specifically"
+          prompt: "Smart home devices compatible with Singapore HDB flats",
+          reason: "Addresses specific local housing context that resonates with majority of Singaporeans."
         },
         {
-          prompt: "AI-driven SEO techniques that work",
-          reason: "Combines AI focus with proven results messaging"
+          prompt: "Where to buy energy-efficient appliances in Singapore with warranty?",
+          reason: "Targets environmentally conscious buyers seeking reliability and cost savings."
         },
         {
-          prompt: "Advanced AI solutions for business growth",
-          reason: "Appeals to growth-oriented businesses and decision makers"
+          prompt: "Best Shopify stores in Singapore for modern home and living products",
+          reason: "Direct platform mention appeals to users comparing e-commerce store quality."
         }
       ]
       setRecommendations(alternativeRecommendations)
