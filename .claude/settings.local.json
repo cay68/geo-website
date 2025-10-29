@@ -18,7 +18,12 @@
       "Bash(gh --version:*)",
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(gh repo view:*)",
+      "Bash(timeout 30 bash -c 'while true; do curl -s -o /dev/null -w \"\"%{http_code}\"\" https://cay68.github.io/geo-website/ && break || sleep 2; done')",
+      "Bash(npx tsc:*)",
+      "Bash(awk:*)",
+      "Bash(cat:*)"
     ],
     "deny": []
   }
