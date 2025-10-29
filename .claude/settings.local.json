@@ -2,30 +2,9 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(npm install)",
-      "Bash(npm install:*)",
-      "Bash(mkdir:*)",
-      "Bash(npm run dev:*)",
-      "Bash(rm:*)",
-      "Bash(npm run build:*)",
-      "Bash(find:*)",
-      "Bash(sed:*)",
-      "Bash(cp:*)",
-      "Bash(dir:*)",
-      "Bash(git init:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(gh --version:*)",
-      "Bash(git remote add:*)",
-      "Bash(git branch:*)",
-      "Bash(git push:*)",
-      "Bash(gh repo view:*)",
-      "Bash(timeout 30 bash -c 'while true; do curl -s -o /dev/null -w \"\"%{http_code}\"\" https://cay68.github.io/geo-website/ && break || sleep 2; done')",
-      "Bash(npx tsc:*)",
-      "Bash(awk:*)",
-      "Bash(cat:*)",
-      "Bash(ls \"C:\\Users\\ASUS\\Downloads\\geo\\geo-tool\\dist\\images\"\" | grep -i \"landing \")"
+      "Bash(curl:*)"
     ],
-    "deny": []
+    "deny": [],
+    "ask": []
   }
 }
