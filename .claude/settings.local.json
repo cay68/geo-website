@@ -23,7 +23,8 @@
       "Bash(timeout 30 bash -c 'while true; do curl -s -o /dev/null -w \"\"%{http_code}\"\" https://cay68.github.io/geo-website/ && break || sleep 2; done')",
       "Bash(npx tsc:*)",
       "Bash(awk:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(ls \"C:\\Users\\ASUS\\Downloads\\geo\\geo-tool\\dist\\images\"\" | grep -i \"landing \")"
     ],
     "deny": []
   }
