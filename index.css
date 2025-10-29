@@ -56,9 +56,9 @@
 
 .u-section-1 .u-image-1 {
   --radius: 10px;
-  width: 650px;
-  height: 400px;
-  margin: -450px 0 75px auto;
+  width: 543px;
+  height: 334px;
+  margin: -409px 0 75px auto;
   object-fit: cover;
   object-position: left center;
 }
@@ -130,8 +130,8 @@
   }
 
   .u-section-1 .u-image-1 {
-    width: 650px;
-    height: 400px;
+    width: 540px;
+    height: 332px;
     margin-top: 20px;
     margin-bottom: 75px;
     object-fit: cover;
@@ -169,7 +169,7 @@
   }
 
   .u-section-1 .u-image-1 {
-    height: 250px;
+    height: 209px;
     margin-top: 21px;
     margin-bottom: 60px;
     margin-right: initial;
