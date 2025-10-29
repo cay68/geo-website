@@ -116,22 +116,7 @@ const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onC
     setTimeout(() => {
       const mockRewrittenContent = `**AI-Optimized Content:**
 
-Discover Singapore's Premier Destination for Smart Home & Kitchen Appliances
-
-Looking for the perfect blend of style, functionality, and value in home appliances? Our curated Shopify store brings you the latest in smart home technology and premium kitchen essentials, specifically tailored for modern Singaporean living.
-
-From energy-efficient air fryers and multi-cookers that make weeknight dinners a breeze, to sleek smart home devices that seamlessly integrate with your HDB flat's setup—we've got everything to elevate your daily routine. Each product is hand-selected for quality, backed by comprehensive warranties, and delivered right to your doorstep with Singapore's fastest fulfillment.
-
-**Why Choose Us:**
-✓ **Curated for Singapore**: Products designed for local climate, space, and lifestyle needs
-✓ **Smart Home Ready**: Compatible with popular voice assistants and automation systems
-✓ **Seasonal Deals**: Regular festive promotions on trending cooking appliances and gadgets
-✓ **Trusted Quality**: Only reliable brands with excellent customer reviews and support
-✓ **Fast Delivery**: Most items ship within 24-48 hours across Singapore
-
-Whether you're upgrading your kitchen for CNY feasts, optimizing your home office setup, or exploring the latest smart home trends—our store makes it simple to find exactly what you need. Browse our collection of stylish, practical appliances that combine modern design with everyday functionality.
-
-**Shop with confidence**: Free returns, secure payment, and dedicated customer support for all your home improvement needs.`
+Transform your cooking experience with the SmartChef Pro Air Fryer—Singapore's #1 choice for healthy, delicious meals in minutes. Designed specifically for compact HDB kitchens, this 5.5L powerhouse combines cutting-edge air circulation technology with intuitive one-touch controls, letting you enjoy crispy favorites with 85% less oil. From golden-brown spring rolls for CNY gatherings to weeknight rotisserie chicken, the SmartChef Pro delivers restaurant-quality results every time. Compatible with Alexa and Google Home for voice-activated convenience, plus a digital touchscreen with 8 preset cooking modes. Backed by our 2-year warranty and same-day delivery across Singapore. Elevate your home cooking today.`
 
       setRewrittenContent(mockRewrittenContent)
       stopLoading()
@@ -153,15 +138,7 @@ Whether you're upgrading your kitchen for CNY feasts, optimizing your home offic
     setTimeout(() => {
       const alternativeContent = `**Original Content (Before Optimization):**
 
-Welcome to Our Home Appliances Store
-
-We sell various home and kitchen appliances online. Our store has many products including fans, kettles, air fryers, and other items for your home. We have been in business for some time and offer good prices.
-
-You can buy products from our website. We ship to Singapore addresses. Our appliances are from different brands and we try to keep good quality items in stock.
-
-If you need appliances for your kitchen or home, you can check our catalog. We have seasonal sales sometimes. Products come with standard warranty as provided by manufacturers.
-
-Browse our store to see what we have available. We accept various payment methods. Contact us if you have questions about products or delivery.`
+This air fryer has 5.5L capacity and uses hot air to cook food. It has temperature control and timer function. The product comes with non-stick basket that can be washed. Suitable for frying, baking and grilling different types of food. Power consumption is 1500W. Available in black color. Comes with 1 year warranty from manufacturer. Can be used to cook chicken, fish, vegetables and other items. The basket is removable for easy cleaning.`
 
       setRewrittenContent(alternativeContent)
       stopLoading()
