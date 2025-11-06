@@ -26,7 +26,7 @@ const AI_PLATFORMS = [
 const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onClearPrompts, onAddToHistory, onSwitchToInsights, prefilledContent }: SmartContentRewriterProps) => {
   const navigate = useNavigate()
   const [content, setContent] = useState(prefilledContent || '')
-  const [prompts, setPrompts] = useState([''])
+  const [prompts, setPrompts] = useState(prefilledContent && prefilledPrompts.length > 0 ? prefilledPrompts : [''])
   const [rewrittenContent, setRewrittenContent] = useState('')
   const [copySuccess, setCopySuccess] = useState(false)
   const [tone, setTone] = useState('')

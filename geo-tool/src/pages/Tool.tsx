@@ -30,9 +30,13 @@ function Tool() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   const [prefilledAIDescription, setPrefilledAIDescription] = useState('')
   const [prefilledContentRewriter, setPrefilledContentRewriter] = useState('')
+  const [prefilledContentPrompts, setPrefilledContentPrompts] = useState<string[]>([])
   const [prefilledInsightsIndustry, setPrefilledInsightsIndustry] = useState('')
   const [prefilledInsightsWebsite, setPrefilledInsightsWebsite] = useState('')
-  const [history, setHistory] = useState<HistoryItem[]>([
+  const [prefilledInsightsPrompts, setPrefilledInsightsPrompts] = useState<string[]>([])
+
+  // Static history - never add new items
+  const staticHistory: HistoryItem[] = [
     {
       id: '1',
       tool: 'insights-report',
@@ -54,8 +58,7 @@ function Tool() {
       description: 'AI search optimization prompts',
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2) // 2 hours ago
     }
-  ])
-  const [currentDescription, setCurrentDescription] = useState('')
+  ]
 
   // Sync URL with active tool
   useEffect(() => {
@@ -107,30 +110,19 @@ function Tool() {
     updateURL('content-rewriter')
   }
 
-  const addToHistory = (tool: ActiveTool, description: string) => {
-    const toolNames = {
-      'ai-prompts': 'AI Prompt Recommendations',
-      'content-rewriter': 'Smart Content Rewriter',
-      'insights-report': 'Insights Report'
-    }
-
-    const newHistoryItem: HistoryItem = {
-      id: Date.now().toString(),
-      tool,
-      title: toolNames[tool],
-      description: description.slice(0, 60) + (description.length > 60 ? '...' : ''),
-      timestamp: new Date()
-    }
-
-    setHistory(prev => [newHistoryItem, ...prev].slice(0, 20)) // Keep last 20 items
+  // Do nothing when tools try to add history - keep it static
+  const addToHistory = (_tool: ActiveTool, _description: string) => {
+    // Static history - no new items added
   }
 
   const loadHistoryItem = (item: HistoryItem) => {
     // First clear all prefilled data
     setPrefilledAIDescription('')
     setPrefilledContentRewriter('')
+    setPrefilledContentPrompts([])
     setPrefilledInsightsIndustry('')
     setPrefilledInsightsWebsite('')
+    setPrefilledInsightsPrompts([])
 
     // Then set the active tool
     setActiveTool(item.tool)
@@ -142,16 +134,13 @@ function Tool() {
         setPrefilledAIDescription('I own an online Shopify store in Singapore that sells home and kitchen appliances. My target audience includes homeowners, renters, and tech-savvy consumers aged 25-45 looking for quality, affordable home solutions.')
       } else if (item.tool === 'content-rewriter') {
         setPrefilledContentRewriter('SmartChef Pro Air Fryer 5.5L - Your kitchen companion for healthier cooking')
+        setPrefilledContentPrompts(['Best air fryer for Singapore kitchens', 'Healthier cooking appliances'])
       } else if (item.tool === 'insights-report') {
         setPrefilledInsightsIndustry('E-commerce')
         setPrefilledInsightsWebsite('mandyshomestore.sg')
+        setPrefilledInsightsPrompts(['Where to buy home appliances in Singapore', 'Best online store for kitchen products'])
       }
     }, 100)
-  }
-
-  const deleteHistoryItem = (e: React.MouseEvent, itemId: string) => {
-    e.stopPropagation() // Prevent triggering loadHistoryItem
-    setHistory(prev => prev.filter(item => item.id !== itemId))
   }
 
   const formatTimestamp = (date: Date) => {
@@ -174,10 +163,10 @@ function Tool() {
       case 'content-rewriter':
         return (
           <SmartContentRewriter
-            key={`content-rewriter-${prefilledContentRewriter}`}
+            key={`content-rewriter-${prefilledContentRewriter}-${prefilledContentPrompts.join(',')}`}
             startLoading={startLoading}
             stopLoading={stopLoading}
-            prefilledPrompts={generatedPrompts}
+            prefilledPrompts={prefilledContentPrompts.length > 0 ? prefilledContentPrompts : generatedPrompts}
             onClearPrompts={() => setGeneratedPrompts([])}
             onAddToHistory={(description) => addToHistory('content-rewriter', description)}
             onSwitchToInsights={(content, prompts) => {
@@ -192,12 +181,12 @@ function Tool() {
       case 'insights-report':
         return (
           <InsightsReport
-            key={`insights-${prefilledInsightsIndustry}-${prefilledInsightsWebsite}`}
+            key={`insights-${prefilledInsightsIndustry}-${prefilledInsightsWebsite}-${prefilledInsightsPrompts.join(',')}`}
             startLoading={startLoading}
             stopLoading={stopLoading}
             onAddToHistory={(description) => addToHistory('insights-report', description)}
             prefilledContent={rewrittenContent}
-            prefilledPrompts={contentPrompts}
+            prefilledPrompts={prefilledInsightsPrompts.length > 0 ? prefilledInsightsPrompts : contentPrompts}
             onClearData={() => {
               setRewrittenContent('')
               setContentPrompts([])
@@ -285,9 +274,9 @@ function Tool() {
                 <Clock size={16} />
                 Recent History
               </h3>
-              {history.length > 0 ? (
+              {staticHistory.length > 0 ? (
                 <div className="history-list">
-                  {history.map((item) => (
+                  {staticHistory.map((item) => (
                     <div
                       key={item.id}
                       className="history-item"
@@ -314,13 +303,6 @@ function Tool() {
                           <div className="history-item-time">{formatTimestamp(item.timestamp)}</div>
                         </div>
                       </div>
-                      <button
-                        className="history-item-delete"
-                        onClick={(e) => deleteHistoryItem(e, item.id)}
-                        title="Delete"
-                      >
-                        <Trash2 size={12} />
-                      </button>
                     </div>
                   ))}
                 </div>
