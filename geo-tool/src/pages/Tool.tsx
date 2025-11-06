@@ -126,18 +126,27 @@ function Tool() {
   }
 
   const loadHistoryItem = (item: HistoryItem) => {
+    // First clear all prefilled data
+    setPrefilledAIDescription('')
+    setPrefilledContentRewriter('')
+    setPrefilledInsightsIndustry('')
+    setPrefilledInsightsWebsite('')
+
+    // Then set the active tool
     setActiveTool(item.tool)
     updateURL(item.tool)
 
-    // Set prefilled data based on which history item was clicked
-    if (item.tool === 'ai-prompts') {
-      setPrefilledAIDescription('I own an online Shopify store in Singapore that sells home and kitchen appliances. My target audience includes homeowners, renters, and tech-savvy consumers aged 25-45 looking for quality, affordable home solutions.')
-    } else if (item.tool === 'content-rewriter') {
-      setPrefilledContentRewriter('SmartChef Pro Air Fryer 5.5L - Your kitchen companion for healthier cooking')
-    } else if (item.tool === 'insights-report') {
-      setPrefilledInsightsIndustry('E-commerce')
-      setPrefilledInsightsWebsite('mandyshomestore.sg')
-    }
+    // Use setTimeout to ensure the component has mounted before setting prefilled data
+    setTimeout(() => {
+      if (item.tool === 'ai-prompts') {
+        setPrefilledAIDescription('I own an online Shopify store in Singapore that sells home and kitchen appliances. My target audience includes homeowners, renters, and tech-savvy consumers aged 25-45 looking for quality, affordable home solutions.')
+      } else if (item.tool === 'content-rewriter') {
+        setPrefilledContentRewriter('SmartChef Pro Air Fryer 5.5L - Your kitchen companion for healthier cooking')
+      } else if (item.tool === 'insights-report') {
+        setPrefilledInsightsIndustry('E-commerce')
+        setPrefilledInsightsWebsite('mandyshomestore.sg')
+      }
+    }, 100)
   }
 
   const deleteHistoryItem = (e: React.MouseEvent, itemId: string) => {
@@ -165,6 +174,7 @@ function Tool() {
       case 'content-rewriter':
         return (
           <SmartContentRewriter
+            key={`content-rewriter-${prefilledContentRewriter}`}
             startLoading={startLoading}
             stopLoading={stopLoading}
             prefilledPrompts={generatedPrompts}
@@ -182,6 +192,7 @@ function Tool() {
       case 'insights-report':
         return (
           <InsightsReport
+            key={`insights-${prefilledInsightsIndustry}-${prefilledInsightsWebsite}`}
             startLoading={startLoading}
             stopLoading={stopLoading}
             onAddToHistory={(description) => addToHistory('insights-report', description)}
@@ -198,6 +209,7 @@ function Tool() {
       default:
         return (
           <AIPromptRecommendations
+            key={`ai-prompts-${prefilledAIDescription}`}
             startLoading={startLoading}
             stopLoading={stopLoading}
             onUseInRewriter={handleUsePromptsInRewriter}
