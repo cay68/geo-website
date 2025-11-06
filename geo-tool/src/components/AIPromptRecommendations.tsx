@@ -7,11 +7,12 @@ interface AIPromptRecommendationsProps {
   stopLoading: () => void
   onUseInRewriter: (prompts: string[]) => void
   onAddToHistory: (description: string) => void
+  prefilledDescription?: string
 }
 
-const AIPromptRecommendations = ({ startLoading, stopLoading, onUseInRewriter, onAddToHistory }: AIPromptRecommendationsProps) => {
+const AIPromptRecommendations = ({ startLoading, stopLoading, onUseInRewriter, onAddToHistory, prefilledDescription }: AIPromptRecommendationsProps) => {
   const navigate = useNavigate()
-  const [businessDescription, setBusinessDescription] = useState('')
+  const [businessDescription, setBusinessDescription] = useState(prefilledDescription || '')
   const [websiteLink, setWebsiteLink] = useState('')
   const [websiteImage, setWebsiteImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string>('')
@@ -21,6 +22,15 @@ const AIPromptRecommendations = ({ startLoading, stopLoading, onUseInRewriter, o
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false)
+
+  // Auto-submit when prefilled description is provided
+  useEffect(() => {
+    if (prefilledDescription && !hasAutoSubmitted && recommendations.length === 0) {
+      setHasAutoSubmitted(true)
+      handleSubmit(new Event('submit') as any)
+    }
+  }, [prefilledDescription])
 
   useEffect(() => {
     if (businessDescription && recommendations.length > 0) {

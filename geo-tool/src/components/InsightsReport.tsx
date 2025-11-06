@@ -10,6 +10,8 @@ interface InsightsReportProps {
   prefilledContent?: string
   prefilledPrompts?: string[]
   onClearData?: () => void
+  prefilledIndustry?: string
+  prefilledWebsiteLink?: string
 }
 
 interface BrandRanking {
@@ -26,17 +28,26 @@ interface PromptAnalysis {
   appearances: number
 }
 
-const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledContent, prefilledPrompts, onClearData }: InsightsReportProps) => {
+const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledContent, prefilledPrompts, onClearData, prefilledIndustry, prefilledWebsiteLink }: InsightsReportProps) => {
   const navigate = useNavigate()
-  const [industry, setIndustry] = useState('')
+  const [industry, setIndustry] = useState(prefilledIndustry || '')
   const [prompts, setPrompts] = useState<string[]>((prefilledPrompts && prefilledPrompts.length > 0) ? prefilledPrompts : [''])
   const [content, setContent] = useState(prefilledContent || '')
-  const [websiteLink, setWebsiteLink] = useState('')
+  const [websiteLink, setWebsiteLink] = useState(prefilledWebsiteLink || '')
   const [businessName, setBusinessName] = useState('Your Brand')
   const [dashboardData, setDashboardData] = useState<any>(null)
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null)
   const [isDashboardExpanded, setIsDashboardExpanded] = useState(false)
   const resultsRef = useRef<HTMLDivElement>(null)
+  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false)
+
+  // Auto-submit when prefilled data is provided
+  useEffect(() => {
+    if (prefilledIndustry && prefilledWebsiteLink && !hasAutoSubmitted && !dashboardData) {
+      setHasAutoSubmitted(true)
+      handleSubmit(new Event('submit') as any)
+    }
+  }, [prefilledIndustry, prefilledWebsiteLink])
 
   useEffect(() => {
     if (industry && dashboardData) {

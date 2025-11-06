@@ -9,6 +9,7 @@ interface SmartContentRewriterProps {
   onClearPrompts: () => void
   onAddToHistory: (description: string) => void
   onSwitchToInsights?: (content: string, prompts: string[]) => void
+  prefilledContent?: string
 }
 
 const AI_PLATFORMS = [
@@ -22,9 +23,9 @@ const AI_PLATFORMS = [
   'Grok'
 ]
 
-const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onClearPrompts, onAddToHistory, onSwitchToInsights }: SmartContentRewriterProps) => {
+const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onClearPrompts, onAddToHistory, onSwitchToInsights, prefilledContent }: SmartContentRewriterProps) => {
   const navigate = useNavigate()
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState(prefilledContent || '')
   const [prompts, setPrompts] = useState([''])
   const [rewrittenContent, setRewrittenContent] = useState('')
   const [copySuccess, setCopySuccess] = useState(false)
@@ -37,9 +38,18 @@ const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onC
   const [showAudiencePopout, setShowAudiencePopout] = useState(false)
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
+  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false)
 
   const tones = ['Casual', 'Formal', 'Persuasive', 'Humorous', 'Inspirational']
   const audiences = ['Novice', 'Intermediate', 'Expert']
+
+  // Auto-submit when prefilled content is provided
+  useEffect(() => {
+    if (prefilledContent && !hasAutoSubmitted && !rewrittenContent) {
+      setHasAutoSubmitted(true)
+      handleSubmit(new Event('submit') as any)
+    }
+  }, [prefilledContent])
 
   useEffect(() => {
     if (content && rewrittenContent) {

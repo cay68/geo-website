@@ -28,26 +28,30 @@ function Tool() {
   const [rewrittenContent, setRewrittenContent] = useState('')
   const [contentPrompts, setContentPrompts] = useState<string[]>([])
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const [prefilledAIDescription, setPrefilledAIDescription] = useState('')
+  const [prefilledContentRewriter, setPrefilledContentRewriter] = useState('')
+  const [prefilledInsightsIndustry, setPrefilledInsightsIndustry] = useState('')
+  const [prefilledInsightsWebsite, setPrefilledInsightsWebsite] = useState('')
   const [history, setHistory] = useState<HistoryItem[]>([
     {
       id: '1',
-      tool: 'ai-prompts',
-      title: 'AI Prompt Recommendations',
-      description: 'Best AI tools for e-commerce optimization',
+      tool: 'insights-report',
+      title: 'Brand Visibility Dashboard',
+      description: "Mandy's Home Store - Home & Living Appliances",
       timestamp: new Date(Date.now() - 1000 * 60 * 5) // 5 minutes ago
     },
     {
       id: '2',
       tool: 'content-rewriter',
-      title: 'Smart Content Rewriter',
-      description: 'SEO strategies for SaaS companies',
+      title: 'Air Fryer Product Description',
+      description: 'SmartChef Pro Air Fryer optimization',
       timestamp: new Date(Date.now() - 1000 * 60 * 30) // 30 minutes ago
     },
     {
       id: '3',
-      tool: 'insights-report',
-      title: 'Insights Report',
-      description: 'Digital marketing analytics and performance',
+      tool: 'ai-prompts',
+      title: 'Singapore Home Appliances Store',
+      description: 'AI search optimization prompts',
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2) // 2 hours ago
     }
   ])
@@ -124,6 +128,16 @@ function Tool() {
   const loadHistoryItem = (item: HistoryItem) => {
     setActiveTool(item.tool)
     updateURL(item.tool)
+
+    // Set prefilled data based on which history item was clicked
+    if (item.tool === 'ai-prompts') {
+      setPrefilledAIDescription('I own an online Shopify store in Singapore that sells home and kitchen appliances. My target audience includes homeowners, renters, and tech-savvy consumers aged 25-45 looking for quality, affordable home solutions.')
+    } else if (item.tool === 'content-rewriter') {
+      setPrefilledContentRewriter('SmartChef Pro Air Fryer 5.5L - Your kitchen companion for healthier cooking')
+    } else if (item.tool === 'insights-report') {
+      setPrefilledInsightsIndustry('E-commerce')
+      setPrefilledInsightsWebsite('mandyshomestore.sg')
+    }
   }
 
   const deleteHistoryItem = (e: React.MouseEvent, itemId: string) => {
@@ -162,6 +176,7 @@ function Tool() {
               setActiveTool('insights-report')
               updateURL('insights-report')
             }}
+            prefilledContent={prefilledContentRewriter}
           />
         )
       case 'insights-report':
@@ -176,6 +191,8 @@ function Tool() {
               setRewrittenContent('')
               setContentPrompts([])
             }}
+            prefilledIndustry={prefilledInsightsIndustry}
+            prefilledWebsiteLink={prefilledInsightsWebsite}
           />
         )
       default:
@@ -185,6 +202,7 @@ function Tool() {
             stopLoading={stopLoading}
             onUseInRewriter={handleUsePromptsInRewriter}
             onAddToHistory={(description) => addToHistory('ai-prompts', description)}
+            prefilledDescription={prefilledAIDescription}
           />
         )
     }
