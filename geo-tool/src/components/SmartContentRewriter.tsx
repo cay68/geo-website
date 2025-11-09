@@ -124,9 +124,7 @@ const SmartContentRewriter = ({ startLoading, stopLoading, prefilledPrompts, onC
     
     // Simulate API call with mock rewritten content
     setTimeout(() => {
-      const mockRewrittenContent = `**AI-Optimized Content:**
-
-Transform your cooking experience with the SmartChef Pro Air Fryer—Singapore's #1 choice for healthy, delicious meals in minutes. Designed specifically for compact HDB kitchens, this 5.5L powerhouse combines cutting-edge air circulation technology with intuitive one-touch controls, letting you enjoy crispy favorites with 85% less oil. From golden-brown spring rolls for CNY gatherings to weeknight rotisserie chicken, the SmartChef Pro delivers restaurant-quality results every time. Compatible with Alexa and Google Home for voice-activated convenience, plus a digital touchscreen with 8 preset cooking modes. Backed by our 2-year warranty and same-day delivery across Singapore. Elevate your home cooking today.`
+      const mockRewrittenContent = `Mandy's Home & Living Appliances is your premier destination for innovative home solutions and smart living technology. We specialize in high-performance kitchen appliances, intelligent home gadgets, and premium living essentials designed to enhance your daily lifestyle. Our carefully curated collection features advanced air fryers, efficient coffee makers, robotic cleaning systems, and cutting-edge home automation products—all backed by quality assurance and competitive pricing. Whether you're upgrading your kitchen, improving home cleanliness, or embracing smart home technology, we deliver reliable, energy-efficient appliances that combine modern innovation with practical functionality. Discover how Mandy's Home & Living Appliances can revolutionize your home today.`
 
       setRewrittenContent(mockRewrittenContent)
       stopLoading()
@@ -158,13 +156,9 @@ This air fryer has 5.5L capacity and uses hot air to cook food. It has temperatu
   }
 
   const handleCopyContent = async () => {
-    try {
-      await navigator.clipboard.writeText(rewrittenContent)
-      setCopySuccess(true)
-      setTimeout(() => setCopySuccess(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy content:', err)
-    }
+    await navigator.clipboard.writeText(rewrittenContent)
+    setCopySuccess(true)
+    setTimeout(() => setCopySuccess(false), 2000)
   }
 
   const handleShorten = () => {

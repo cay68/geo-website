@@ -106,14 +106,9 @@ const InsightsReport = ({ startLoading, stopLoading, onAddToHistory, prefilledCo
 
     // Extract business name from website link (domain name)
     let extractedBusinessName = 'Your Brand'
-    try {
-      const url = new URL(websiteLink.startsWith('http') ? websiteLink : `https://${websiteLink}`)
-      const hostname = url.hostname.replace('www.', '')
-      extractedBusinessName = hostname.split('.')[0].charAt(0).toUpperCase() + hostname.split('.')[0].slice(1)
-    } catch (e) {
-      // Use a portion of the input as business name if URL parsing fails
-      extractedBusinessName = websiteLink.split('.')[0].charAt(0).toUpperCase() + websiteLink.split('.')[0].slice(1)
-    }
+    const url = new URL(websiteLink.startsWith('http') ? websiteLink : `https://${websiteLink}`)
+    const hostname = url.hostname.replace('www.', '')
+    extractedBusinessName = hostname.split('.')[0].charAt(0).toUpperCase() + hostname.split('.')[0].slice(1)
 
     // Update the business name state
     setBusinessName(extractedBusinessName)
